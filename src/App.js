@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Cart from './Cart';
-import slugify from 'slugify';
-
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-//import slugify from 'slugify';
+import FeatureForm from './FeatureForm';
 
 import './App.css';
 
-// This object will allow us to
-// easily convert numbers into US dollar values
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
 
 class App extends Component {
   state = {
@@ -45,7 +35,7 @@ class App extends Component {
       selected
     });
   };
-
+/*
   render() {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
@@ -98,18 +88,18 @@ class App extends Component {
       0
     );
 */
+render(){
     return (
       <div className="App">
         <Header />
         <main>
-        <form className="main__form">
-            <h2>Customize your laptop</h2>
-            {features}
-          </form>
+        <FeatureForm 
+        features={this.props.features}
+        selected={this.state.selected}
+        updateFeature={this.updateFeature}
+        />
           <Cart 
-            features={this.props.features}
-            selected={this.state.selected}
-            updateFeature={this.updateFeature}
+          selected={this.state.selected}
           />
         </main>
       </div>
