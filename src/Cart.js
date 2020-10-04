@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CartTotal from './CartTotal';
 import CartItem from './CartItem';
+import CartHeader from './CartHeader';
 
 class Cart extends Component{
     createCartList = () => {
@@ -8,7 +9,7 @@ class Cart extends Component{
             const featureHash = feature + '-' + idx;
             return (
               <CartItem 
-                key={featureHash}
+                key={feature}
                 featureHash={featureHash}
                 feature={feature}
                 selectedOption={this.props.selected[feature]}
@@ -21,8 +22,8 @@ class Cart extends Component{
         const total = Object.keys(this.props.selected).reduce((acc, curr) => acc + this.props.selected[curr].cost, 0);
         return(
             <section className="main__summary">
-            <h2>Your cart</h2>
-            {this.createCartList}
+            <CartHeader />
+            {this.createCartList()}
             <div className="summary__total">
             <div className="summary__total__label">Total</div>
             <CartTotal total={total}/>
